@@ -1,35 +1,41 @@
-// Write your code here!
+const apiURL = "https://jsonplaceholder.typicode.com/posts";
 const postList = document.getElementById("post-list");
-
-// Async function to fetch posts
-async function fetchPosts() {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const posts = await response.json();
-    displayPosts(posts);
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 // Function to display posts
 function displayPosts(posts) {
+  // Clear any previous posts
+  postList.innerHTML = "";
+
+  // Loop through posts
   posts.forEach(post => {
-    // Create elements
     const li = document.createElement("li");
-    const h1 = document.createElement("h1");
-    const p = document.createElement("p");
 
-    // Add content
-    h1.textContent = post.title;
-    p.textContent = post.body;
+    const title = document.createElement("h2");
+    title.textContent = post.title;
 
-    // Append elements
-    li.appendChild(h1);
-    li.appendChild(p);
+    const body = document.createElement("p");
+    body.textContent = post.body;
+
+    li.appendChild(title);
+    li.appendChild(body);
     postList.appendChild(li);
   });
 }
 
-// Call fetch function
+// Fetch posts using async/await
+async function fetchPosts() {
+  try {
+    const response = await fetch(apiURL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const posts = await response.json();
+    displayPosts(posts); // Display the posts on the page
+  } catch (error) {
+    postList.innerHTML = `<li style="color:red;">Error: ${error.message}</li>`;
+    console.error("Error fetching posts:", error);
+  }
+}
+
+// Call the fetch function
 fetchPosts();
