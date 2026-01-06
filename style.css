@@ -1,0 +1,38 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  text-align: center;
+  color: #007bff;
+}
+
+#post-list {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+#post-list li {
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#post-list h2 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+#post-list p {
+  margin: 0;
+  color: #555;
+}
